@@ -16,7 +16,7 @@ const Contact = () => {
             className="relative p-8 md:p-2 flex h-[500px] w-full flex-col items-center justify-center overflow-hidden rounded-lg border bg-background md:shadow-xl"
         >
             <H2 className="text-5xl md:text-6xl font-semibold">Contact</H2>
-            <p className="text-foreground text-center text-base md:text-xl my-4">
+            <p className="text-foreground text-center text-base md:text-xl my-4 pointer-events-none">
                 Interested in working together? Feel free to reach out!
             </p>
             <ConfettiButton

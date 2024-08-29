@@ -1,8 +1,13 @@
 const Footer = () => {
   return (
-    <footer className="py-6 px-4 sm:px-6 lg:px-8 text-center text-muted-foreground/70">
-        <p className="text-sm">&copy; {new Date().getFullYear()} Renzyx. All rights reserved.</p>
-    </footer>
+      <footer className="bg-background border-t border-t-muted p-8 z-50">
+          <div className="flex flex-col md:flex-row items-start md:items-end justify-between">
+              <p className="text-primary font-extrabold text-5xl md:text-9xl">
+                  Renzyx.
+              </p>
+              <p className="text-muted-foreground">Copyright &copy; Renz Arias {new Date().getFullYear()}</p>
+          </div>
+      </footer>
   );
 }
 

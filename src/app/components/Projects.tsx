@@ -3,6 +3,7 @@ import Github from "@/components/icons/Github";
 import { projects } from "./data";
 import { motion } from "framer-motion";
 import Link from "next/link";
+import BlurFade from "@/components/magicui/blur-fade";
 
 const Projects = () => {
     return (
@@ -11,14 +12,21 @@ const Projects = () => {
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                 {projects.map((project, index) => (
-                    <motion.div
+                    // <motion.div
+                    //     key={index}
+                    //     initial={{ opacity: 0, y: 20 }}
+                    //     animate={{ opacity: 1, y: 0 }}
+                    //     transition={{ duration: 0.25, delay: 0.25 * index }}
+                    // >
+                    //     <Project {...project} />
+                    // </motion.div>
+                    <BlurFade
                         key={index}
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.25, delay: 0.25 * index }}
+                        delay={0.25 + index * 0.05}
+                        inView
                     >
                         <Project {...project} />
-                    </motion.div>
+                    </BlurFade>
                 ))}
             </div>
         </section>
