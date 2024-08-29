@@ -42,14 +42,13 @@ export default function Component() {
                 <DotPattern windowSize={windowSize} dotSize={4} />
             </div>
             <div className="relative z-10">
-                <main className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+                <main className="max-w-2xl mx-auto px-4 space-y-8 sm:px-6 lg:px-8 py-16">
                     <About />
 
                     <Projects />
 
                     <Contact />
                 </main>
-                <Footer />
             </div>
             <div
                 className="fixed w-64 h-64 rounded-full bg-gradient-radial from-white/20 to-transparent opacity-20 pointer-events-none z-0"
