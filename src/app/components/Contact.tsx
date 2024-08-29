@@ -1,4 +1,5 @@
 import H2 from "@/components/H2";
+import BlurFade from "@/components/magicui/blur-fade";
 import { ConfettiButton } from "@/components/magicui/confetti";
 import Particles from "@/components/magicui/particles";
 
@@ -15,21 +16,27 @@ const Contact = () => {
             id="contact"
             className="relative p-8 md:p-2 flex h-[500px] w-full flex-col items-center justify-center overflow-hidden rounded-lg border bg-background md:shadow-xl"
         >
-            <H2 className="text-5xl md:text-6xl font-semibold">Contact</H2>
-            <p className="text-foreground text-center text-base md:text-xl my-4 pointer-events-none">
-                Interested in working together? Feel free to reach out!
-            </p>
-            <ConfettiButton
-                variant={"link"}
-                className="bg-transparent text-foreground z-10"
-            >
-                <a
-                    href="mailto:renzyx.dev@gmail.com"
-                    className="text-lg md:text-3xl font-semibold"
+            <BlurFade delay={0.5} inView>
+                <H2 className="text-5xl md:text-6xl font-semibold">Contact</H2>
+            </BlurFade>
+            <BlurFade delay={0.5 * 2}>
+                <p className="text-foreground text-center text-base md:text-xl my-4 pointer-events-none">
+                    Interested in working together? Feel free to reach out!
+                </p>
+            </BlurFade>
+            <BlurFade delay={0.5 * 3}>
+                <ConfettiButton
+                    variant={"link"}
+                    className="bg-transparent text-foreground z-10"
                 >
-                    renzyx.dev@gmail.com
-                </a>
-            </ConfettiButton>
+                    <a
+                        href="mailto:renzyx.dev@gmail.com"
+                        className="text-lg md:text-3xl font-semibold"
+                    >
+                        renzyx.dev@gmail.com
+                    </a>
+                </ConfettiButton>
+            </BlurFade>
             <Particles
                 className="absolute inset-0"
                 quantity={100}

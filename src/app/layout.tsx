@@ -3,24 +3,35 @@ import { GeistSans } from "geist/font/sans";
 import { GeistMono } from "geist/font/mono";
 import "./globals.css";
 import { cn } from "@/lib/utils";
+import NextTopLoader from "nextjs-toploader";
+import { Toaster } from "react-hot-toast";
+import Footer from "@/components/layouts/Footer";
+import Header from "@/components/layouts/Header";
 
 export const metadata: Metadata = {
-  title: "Renzyx",
-  description: "A portfolio website for Renzyx",
+    title: "Renzyx",
+    description: "A portfolio website for Renzyx",
 };
 
 export default function RootLayout({
-  children,
+    children,
 }: Readonly<{
-  children: React.ReactNode;
+    children: React.ReactNode;
 }>) {
-  return (
-      <html lang="en">
-          <body className={cn(
-          "min-h-screen bg-background font-sans antialiased",
-          `${GeistSans.className} ${GeistMono.className}`)}>
-              {children}
-          </body>
-      </html>
-  );
+    return (
+        <html lang="en">
+            <body
+                className={cn(
+                    "min-h-screen bg-background font-sans antialiased",
+                    `${GeistSans.className} ${GeistMono.className}`
+                )}
+            >
+                <NextTopLoader color="#000000" showSpinner={false} />
+                <Header />
+                {children}
+                <Footer />
+                <Toaster />
+            </body>
+        </html>
+    );
 }

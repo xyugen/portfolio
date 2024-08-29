@@ -7,7 +7,6 @@ export default function Home() {
     <div>
       <Portfolio />
       <ScrollToTopButton />
-      <Footer />
     </div>
   );
 }
