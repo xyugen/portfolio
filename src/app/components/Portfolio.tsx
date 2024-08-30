@@ -33,13 +33,13 @@ export default function Component() {
                 <DotPattern windowSize={windowSize} dotSize={4} />
             </div>
             <div className="relative z-10">
-                <main className="max-w-2xl mx-auto px-4 space-y-8 sm:px-6 lg:px-8 py-16">
+                <div className="max-w-2xl mx-auto px-4 space-y-8 sm:px-6 lg:px-8 py-16">
                     <About />
 
                     <Projects />
 
                     <Contact />
-                </main>
+                </div>
             </div>
         </div>
     );

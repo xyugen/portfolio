@@ -7,6 +7,7 @@ import NextTopLoader from "nextjs-toploader";
 import { Toaster } from "react-hot-toast";
 import Footer from "@/components/layouts/Footer";
 import Header from "@/components/layouts/Header";
+import FlareCursor from "@/components/flare-cursor";
 
 export const metadata: Metadata = {
     title: "Renzyx",
@@ -22,13 +23,16 @@ export default function RootLayout({
         <html lang="en">
             <body
                 className={cn(
-                    "min-h-screen bg-background font-sans antialiased",
+                    "min-h-screen bg-background font-sans antialiased transition ease-linear",
                     `${GeistSans.className} ${GeistMono.className}`
                 )}
             >
                 <NextTopLoader color="#000000" showSpinner={false} />
                 <Header />
-                {children}
+                <main className="cursor-none">
+                    <FlareCursor />
+                    {children}
+                </main>
                 <Footer />
                 <Toaster />
             </body>
