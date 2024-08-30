@@ -14,7 +14,7 @@ const headerData: { text: string; className: string }[] = [
 
 const Header = () => {
     return (
-        <header className="px-4 md:px-14 xl:px-52 py-10">
+        <header className="px-6 sm:px-8 md:max-w-7xl mx-auto py-10">
             <div className="flex flex-col md:flex-row justify-between md:items-end">
                 {/* {headerData.map((data, index) => (
                     <motion.div

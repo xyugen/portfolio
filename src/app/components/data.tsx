@@ -91,3 +91,15 @@ export const projects = [
         tags: ["Android Studio", "Java"],
     },
 ];
+
+export const about = [
+    {
+        text: "Shaping Code & Creativity",
+        className:
+            "text-5xl font-medium text-primary/90 md:text-8xl",
+    },
+    {
+        text: "Filipino Software Engineer with a design flair and a passion for clean, efficient code. Specializing in responsive, user-friendly web applications with modern technologies.",
+        className: "text-foreground/80 md:text-2xl",
+    },
+];

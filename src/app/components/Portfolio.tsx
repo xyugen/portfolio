@@ -25,7 +25,7 @@ export default function Component() {
                 />
             </div>
             <div className="relative z-10">
-                <div className="max-w-2xl mx-auto px-4 space-y-8 sm:px-6 lg:px-8 py-16">
+                <div className="max-w-4xl md:max-w-7xl mx-auto space-y-8 px-6 sm:px-8 md:px-20 lg:px-8 py-16">
                     <About />
 
                     <Projects />
