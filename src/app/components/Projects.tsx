@@ -1,7 +1,6 @@
 import H2 from "@/components/H2";
 import Github from "@/components/icons/Github";
 import { projects } from "./data";
-import { motion } from "framer-motion";
 import Link from "next/link";
 import BlurFade from "@/components/magicui/blur-fade";
 
@@ -75,10 +74,9 @@ const Project = (props: ProjectProps) => {
     );
 };
 
-const Tag = ({ key, tag }: { key: string; tag: string }) => {
+const Tag = ({ tag }: { tag: string }) => {
     return (
         <div
-            key={key}
             className="p-1 bg-muted text-muted-foreground rounded-sm text-xs"
         >
             {tag}

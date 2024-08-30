@@ -7,6 +7,7 @@ import { Toaster } from "react-hot-toast";
 import Footer from "@/components/layouts/Footer";
 import Header from "@/components/layouts/Header";
 import FlareCursor from "@/components/flare-cursor";
+import { ThemeProvider } from "@/components/theme-provider";
 
 export const metadata: Metadata = {
     title: "Renz Arias",
@@ -32,7 +33,7 @@ export const metadata: Metadata = {
     twitter: {
         title: "Renz Arias",
         card: "summary_large_image",
-    }
+    },
 };
 
 export default function RootLayout({
@@ -45,14 +46,20 @@ export default function RootLayout({
             <body
                 className={`${GeistSans.variable} ${GeistMono.variable} min-h-screen bg-background font-sans antialiased transition ease-linear`}
             >
-                <NextTopLoader color="#000000" showSpinner={false} />
-                <Header />
-                <main className="relative cursor-none">
-                    <FlareCursor />
-                    {children}
-                </main>
-                <Footer />
-                <Toaster />
+                <ThemeProvider
+                    attribute="class"
+                    defaultTheme="system"
+                    enableSystem
+                >
+                    <NextTopLoader color="#000000" showSpinner={false} />
+                    <Header />
+                    <main className="relative cursor-none">
+                        <FlareCursor />
+                        {children}
+                    </main>
+                    <Footer />
+                    <Toaster />
+                </ThemeProvider>
             </body>
         </html>
     );

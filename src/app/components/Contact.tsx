@@ -2,14 +2,16 @@ import H2 from "@/components/H2";
 import BlurFade from "@/components/magicui/blur-fade";
 import { ConfettiButton } from "@/components/magicui/confetti";
 import Particles from "@/components/magicui/particles";
+import { useTheme } from "next-themes";
+import { useState, useEffect } from "react";
 
 const Contact = () => {
-    // const { theme } = useTheme();
-    // const [color, setColor] = useState("#ffffff");
+    const { theme } = useTheme();
+    const [color, setColor] = useState("#ffffff");
 
-    // useEffect(() => {
-    //     setColor(theme === "dark" ? "#ffffff" : "#000000");
-    // }, [theme]);
+    useEffect(() => {
+        setColor(theme === "dark" ? "#ffffff" : "#000000");
+    }, [theme]);
 
     return (
         <section
@@ -41,7 +43,7 @@ const Contact = () => {
                 className="absolute inset-0 z-0"
                 quantity={100}
                 ease={80}
-                color={"#000000"}
+                color={color}
                 refresh
             />
         </section>

@@ -39,7 +39,7 @@ export default function ScrollToTopButton() {
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: 100 }}
                     transition={{ duration: 0.5 }}
-                    className="fixed font-geist-sans bottom-6 right-6 bg-primary/80 text-background p-2 rounded-full z-50"
+                    className="fixed bottom-8 md:bottom-20 right-8 bg-primary/80 text-background p-2 rounded-full z-50"
                 >
                     <ArrowUp className="h-6 w-6" />
                 </motion.button>
