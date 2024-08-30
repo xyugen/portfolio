@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { GeistSans } from "geist/font/sans";
 import "./globals.css";
-import { cn } from "@/lib/utils";
 import NextTopLoader from "nextjs-toploader";
 import { Toaster } from "react-hot-toast";
 import Footer from "@/components/layouts/Footer";
@@ -41,12 +40,9 @@ export default function RootLayout({
     children: React.ReactNode;
 }>) {
     return (
-        <html lang="en">
+        <html lang="en" className={GeistSans.className}>
             <body
-                className={cn(
-                    GeistSans.className,
-                    "min-h-screen bg-background font-sans antialiased transition ease-linear"
-                )}
+                className="min-h-screen bg-background font-sans antialiased transition ease-linear"
             >
                 <NextTopLoader color="#000000" showSpinner={false} />
                 <Header />
