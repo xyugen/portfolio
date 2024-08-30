@@ -24,10 +24,10 @@ const Contact = () => {
                     Interested in working together? Feel free to reach out!
                 </p>
             </BlurFade>
-            <BlurFade delay={0.5 * 3}>
+            <BlurFade delay={0.5 * 3} className="z-10">
                 <ConfettiButton
                     variant={"link"}
-                    className="bg-transparent text-foreground z-10"
+                    className="bg-transparent text-foreground"
                 >
                     <a
                         href="mailto:renzyx.dev@gmail.com"
@@ -38,7 +38,7 @@ const Contact = () => {
                 </ConfettiButton>
             </BlurFade>
             <Particles
-                className="absolute inset-0"
+                className="absolute inset-0 z-0"
                 quantity={100}
                 ease={80}
                 color={"#000000"}
