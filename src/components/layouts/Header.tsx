@@ -2,13 +2,12 @@
 
 import React from "react";
 import { motion } from "framer-motion";
-import Title from "@/components/animations/title";
 
 const headerData: React.ReactNode[] = [
-    <h1 className="bg-gradient-to-r from-slate-950 to-slate-500 bg-clip-text text-5xl font-extrabold text-transparent">
+    <h1 key={0} className="bg-gradient-to-r from-slate-950 to-slate-500 bg-clip-text text-5xl font-extrabold text-transparent">
         renzyx.
     </h1>,
-    <h3 className="text-3xl font-medium">Software Engineer</h3>,
+    <h3 key={1} className="text-3xl font-medium">Software Engineer</h3>,
 ];
 
 const Header = () => {
