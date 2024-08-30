@@ -6,6 +6,7 @@ import Projects from "./Projects";
 import Contact from "./Contact";
 import AnimatedGridPattern from "@/components/magicui/animated-grid-pattern";
 import { cn } from "@/lib/utils";
+import BentoProjects from "./BentoProjects";
 
 export default function Component() {
     return (
@@ -28,7 +29,8 @@ export default function Component() {
                 <div className="max-w-4xl md:max-w-7xl mx-auto space-y-8 px-6 sm:px-8 md:px-20 lg:px-8 py-16">
                     <About />
 
-                    <Projects />
+                    {/* <Projects /> */}
+                    <BentoProjects />
 
                     <Contact />
                 </div>
