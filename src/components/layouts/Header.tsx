@@ -7,7 +7,7 @@ const headerData: { text: string; className: string }[] = [
     {
         text: "renzyx.",
         className:
-            "pb-2 bg-gradient-to-r from-slate-950 to-slate-500 dark:from-slate-500 dark:to-slate-100 bg-clip-text text-5xl font-extrabold text-transparent text-5xl",
+            "bg-gradient-to-r from-slate-950 to-slate-500 dark:from-slate-500 dark:to-slate-100 bg-clip-text text-5xl font-extrabold text-transparent text-5xl",
     },
     { text: "Software Engineer", className: "text-3xl font-medium" },
 ];
