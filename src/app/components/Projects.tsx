@@ -22,8 +22,9 @@ const Projects = () => {
                         // </motion.div>
                         <BlurFade
                             key={index}
-                            delay={0.25 + index * 0.15}
+                            delay={0.25 + index * 0.10}
                             inView
+                            className="h-full"
                         >
                             <Project {...project} />
                         </BlurFade>
@@ -44,7 +45,7 @@ type ProjectProps = {
 
 const Project = (props: ProjectProps) => {
     return (
-        <div className="relative flex flex-col border bg-background border-muted shadow-sm md:shadow-md rounded-lg space-y-2 p-4 hover:border-accent transition-colors">
+        <div className="relative h-full flex flex-col border bg-background border-muted shadow-sm md:shadow-md rounded-lg space-y-2 p-4 hover:border-accent transition-colors">
             <div className="flex flex-row items-center justify-between">
                 <div className="flex items-center gap-2">
                     {props.icon}
