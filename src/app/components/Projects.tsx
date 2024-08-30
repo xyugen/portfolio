@@ -7,29 +7,31 @@ import BlurFade from "@/components/magicui/blur-fade";
 
 const Projects = () => {
     return (
-        <section id="projects" className="space-y-4 ">
-            <H2>Projects</H2>
+        <BlurFade inView>
+            <section id="projects" className="space-y-4 ">
+                <H2>Projects</H2>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                {projects.map((project, index) => (
-                    // <motion.div
-                    //     key={index}
-                    //     initial={{ opacity: 0, y: 20 }}
-                    //     animate={{ opacity: 1, y: 0 }}
-                    //     transition={{ duration: 0.25, delay: 0.25 * index }}
-                    // >
-                    //     <Project {...project} />
-                    // </motion.div>
-                    <BlurFade
-                        key={index}
-                        delay={0.25 + index * 0.05}
-                        inView
-                    >
-                        <Project {...project} />
-                    </BlurFade>
-                ))}
-            </div>
-        </section>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                    {projects.map((project, index) => (
+                        // <motion.div
+                        //     key={index}
+                        //     initial={{ opacity: 0, y: 20 }}
+                        //     animate={{ opacity: 1, y: 0 }}
+                        //     transition={{ duration: 0.25, delay: 0.25 * index }}
+                        // >
+                        //     <Project {...project} />
+                        // </motion.div>
+                        <BlurFade
+                            key={index}
+                            delay={0.25 + index * 0.15}
+                            inView
+                        >
+                            <Project {...project} />
+                        </BlurFade>
+                    ))}
+                </div>
+            </section>
+        </BlurFade>
     );
 };
 
@@ -52,7 +54,7 @@ const Project = (props: ProjectProps) => {
                 {props.url && (
                     <Link
                         href={props.url}
-                        className="transition-colors cursor-pointer"
+                        className="transition-colors cursor-none"
                         target="_blank"
                     >
                         <Github className="size-4 text-muted-foreground hover:text-primary" />
