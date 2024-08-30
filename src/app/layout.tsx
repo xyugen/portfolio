@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import { GeistSans } from "geist/font/sans";
-import { GeistMono } from "geist/font/mono";
 import "./globals.css";
 import { cn } from "@/lib/utils";
 import NextTopLoader from "nextjs-toploader";
@@ -10,8 +9,30 @@ import Header from "@/components/layouts/Header";
 import FlareCursor from "@/components/flare-cursor";
 
 export const metadata: Metadata = {
-    title: "Renzyx",
-    description: "A portfolio website for Renzyx",
+    title: "Renz Arias",
+    description: "Software developer from the Philippines",
+    openGraph: {
+        title: "Renz Arias",
+        description: "Software developer from the Philippines",
+        // url: "https://renzyx.dev",
+        siteName: "Renz Arias",
+        type: "website",
+    },
+    robots: {
+        index: true,
+        follow: true,
+        googleBot: {
+            index: true,
+            follow: true,
+            "max-video-preview": -1,
+            "max-image-preview": "large",
+            "max-snippet": -1,
+        },
+    },
+    twitter: {
+        title: "Renz Arias",
+        card: "summary_large_image",
+    }
 };
 
 export default function RootLayout({
@@ -23,9 +44,8 @@ export default function RootLayout({
         <html lang="en">
             <body
                 className={cn(
-                    "min-h-screen bg-background font-sans antialiased transition ease-linear",
                     GeistSans.className,
-                    GeistMono.className
+                    "min-h-screen bg-background font-sans antialiased transition ease-linear"
                 )}
             >
                 <NextTopLoader color="#000000" showSpinner={false} />
