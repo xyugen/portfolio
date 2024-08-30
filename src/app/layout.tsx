@@ -29,7 +29,7 @@ export default function RootLayout({
             >
                 <NextTopLoader color="#000000" showSpinner={false} />
                 <Header />
-                <main className="cursor-none">
+                <main className="relative cursor-none">
                     <FlareCursor />
                     {children}
                 </main>

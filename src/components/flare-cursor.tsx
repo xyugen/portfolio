@@ -12,10 +12,11 @@ const FlareCursor = () => {
 
         const target = e.target;
 
-        setIsPointer(
-            window.getComputedStyle(target).getPropertyValue("cursor") ===
-                "pointer"
-        );
+        if (target && target instanceof Element)
+            setIsPointer(
+                window.getComputedStyle(target).getPropertyValue("cursor") ===
+                    "pointer"
+            );
     };
 
     useEffect(() => {
@@ -30,9 +31,7 @@ const FlareCursor = () => {
 
     return (
         <div
-            className={`flare ${
-                isPointer ? "pointer" : ""
-            }`}
+            className={`flare ${isPointer ? "pointer" : ""}`}
             style={{
                 ...cursorStyle,
                 left: `${position.x}px`,

@@ -66,6 +66,11 @@
     html,
     body {
         @apply scroll-smooth;
+        -ms-overflow-style: none; /* IE and Edge */
+        scrollbar-width: none;
+    }
+    ::-webkit-scrollbar {
+        display: none;
     }
     body {
         @apply bg-background text-foreground;
@@ -79,7 +84,7 @@
         @apply cursor-none;
     }
     .flare {
-        @apply fixed bg-transparent translate-x-[-50%] translate-y-[-50%] border-2 border-solid border-primary/30 rounded-full dark:mix-blend-screen pointer-events-none z-[999999] backdrop-blur-[1px] backdrop-filter transition duration-200 ease-in-out cursor-none
+        @apply fixed bg-transparent translate-x-[-50%] translate-y-[-50%] border-2 border-solid border-primary/30 rounded-full dark:mix-blend-screen pointer-events-none z-[999999] backdrop-blur-[1px] backdrop-filter transition duration-200 ease-in-out cursor-none;
     }
     .flare.pointer {
         display: none;
