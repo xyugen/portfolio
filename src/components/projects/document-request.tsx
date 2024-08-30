@@ -1,21 +1,14 @@
-import { useState } from "react";
 import { motion } from "framer-motion";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 
 const DocumentRequestApp = () => {
-    const [requestedDocuments, setRequestedDocuments] = useState<string[]>([]);
-
     const documents = [
         "COR",
         "Form 137",
         "Good Moral",
         "Transcript of Records",
     ];
-
-    const handleRequest = (document: string) => {
-        setRequestedDocuments((prev) => [...prev, document]);
-    };
 
     return (
         <div className="flex justify-center items-center min-h-screen">
@@ -42,7 +35,6 @@ const DocumentRequestApp = () => {
                                 >
                                     <span>{doc}</span>
                                     <Button
-                                        onClick={() => handleRequest(doc)}
                                         variant={'default'}
                                     >
                                         Request
@@ -50,23 +42,6 @@ const DocumentRequestApp = () => {
                                 </li>
                             ))}
                         </ul>
-                        {requestedDocuments.length > 0 && (
-                            <motion.div
-                                className="mt-4 p-2 bg-gray-800 rounded-lg"
-                                initial={{ opacity: 0, y: 10 }}
-                                animate={{ opacity: 1, y: 0 }}
-                                transition={{ duration: 0.3 }}
-                            >
-                                <h3 className="font-semibold">
-                                    Requested Documents:
-                                </h3>
-                                <ul className="list-disc list-inside">
-                                    {requestedDocuments.map((doc, index) => (
-                                        <li key={index}>{doc}</li>
-                                    ))}
-                                </ul>
-                            </motion.div>
-                        )}
                     </CardContent>
                 </Card>
             </motion.div>
