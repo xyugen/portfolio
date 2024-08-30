@@ -40,9 +40,9 @@ export default function RootLayout({
     children: React.ReactNode;
 }>) {
     return (
-        <html lang="en" className={GeistSans.className}>
+        <html lang="en">
             <body
-                className="min-h-screen bg-background font-sans antialiased transition ease-linear"
+                className={`${GeistSans.className} min-h-screen bg-background font-sans antialiased transition ease-linear`}
             >
                 <NextTopLoader color="#000000" showSpinner={false} />
                 <Header />
