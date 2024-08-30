@@ -1,20 +1,22 @@
 "use client";
 
 import React from "react";
-import { motion } from "framer-motion";
+import AnimatedTitle from "../animations/animated-title";
 
-const headerData: React.ReactNode[] = [
-    <h1 key={0} className="bg-gradient-to-r from-slate-950 to-slate-500 bg-clip-text text-5xl font-extrabold text-transparent">
-        renzyx.
-    </h1>,
-    <h3 key={1} className="text-3xl font-medium">Software Engineer</h3>,
+const headerData: { text: string; className: string }[] = [
+    {
+        text: "renzyx.",
+        className:
+            "bg-gradient-to-r from-slate-950 to-slate-500 dark:from-slate-500 dark:to-slate-100 bg-clip-text text-5xl font-extrabold text-transparent text-5xl",
+    },
+    { text: "Software Engineer", className: "text-3xl font-medium" },
 ];
 
 const Header = () => {
     return (
         <header className="px-4 md:px-14 py-10">
             <div className="flex flex-col md:flex-row justify-between md:items-end">
-                {headerData.map((data, index) => (
+                {/* {headerData.map((data, index) => (
                     <motion.div
                         key={index}
                         initial={{ opacity: 0, y: -20 }}
@@ -23,6 +25,14 @@ const Header = () => {
                     >
                         <>{data}</>
                     </motion.div>
+                ))} */}
+                {headerData.map((data, index) => (
+                    <AnimatedTitle
+                        key={index}
+                        delay={1 * index}
+                        text={data.text}
+                        className={data.className}
+                    />
                 ))}
             </div>
         </header>
