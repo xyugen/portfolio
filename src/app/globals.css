@@ -73,7 +73,7 @@
         display: none;
     }
     body {
-        @apply bg-background text-foreground;
+        @apply bg-background text-foreground font-geist-sans;
     }
     ::selection {
         @apply bg-foreground text-background;

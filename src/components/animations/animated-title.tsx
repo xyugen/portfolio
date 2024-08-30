@@ -47,7 +47,7 @@ export default function AnimatedTitle({
     };
 
     return (
-        <h1 className={cn("text-4xl font-bold text-primary", className)}>
+        <h1 className={cn("font-bold text-primary", className)}>
             <motion.span
                 variants={container}
                 initial="hidden"
