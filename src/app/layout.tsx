@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { GeistSans } from "geist/font/sans";
+import { GeistMono } from "geist/font/mono";
 import "./globals.css";
 import NextTopLoader from "nextjs-toploader";
 import { Toaster } from "react-hot-toast";
@@ -42,7 +43,7 @@ export default function RootLayout({
     return (
         <html lang="en">
             <body
-                className={`${GeistSans.className} min-h-screen bg-background font-sans antialiased transition ease-linear`}
+                className={`${GeistSans.variable} ${GeistMono.variable} min-h-screen bg-background font-sans antialiased transition ease-linear`}
             >
                 <NextTopLoader color="#000000" showSpinner={false} />
                 <Header />
