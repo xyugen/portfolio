@@ -17,6 +17,7 @@ export const metadata: Metadata = {
         description: "Software developer from the Philippines",
         // url: "https://renzyx.dev",
         siteName: "Renz Arias",
+        locale: "en-US",
         type: "website",
     },
     robots: {
