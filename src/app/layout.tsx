@@ -24,7 +24,8 @@ export default function RootLayout({
             <body
                 className={cn(
                     "min-h-screen bg-background font-sans antialiased transition ease-linear",
-                    `${GeistSans.className} ${GeistMono.className}`
+                    GeistSans.className,
+                    GeistMono.className
                 )}
             >
                 <NextTopLoader color="#000000" showSpinner={false} />
