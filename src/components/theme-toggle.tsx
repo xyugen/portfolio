@@ -1,16 +1,15 @@
 "use client";
 
-import { useState } from "react";
 import { Sun, Moon } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
 import { useTheme } from "next-themes";
 
 export default function ThemeToggle() {
-    const { theme, setTheme } = useTheme();
+    const { resolvedTheme, setTheme } = useTheme();
 
     const toggleTheme = () => {
-        setTheme(theme === "dark" ? "light" : "dark");
+        setTheme(resolvedTheme === "dark" ? "light" : "dark");
     };
 
     return (
@@ -19,7 +18,7 @@ export default function ThemeToggle() {
             size="icon"
             onClick={toggleTheme}
             aria-label={
-                theme === "dark"
+                resolvedTheme === "dark"
                     ? "Switch to light theme"
                     : "Switch to dark theme"
             }
@@ -28,9 +27,9 @@ export default function ThemeToggle() {
             <motion.div
                 initial={false}
                 animate={{
-                    scale: theme === "dark" ? 1 : 0,
-                    opacity: theme === "dark" ? 1 : 0,
-                    rotate: theme === "dark" ? 0 : -180,
+                    scale: resolvedTheme === "dark" ? 1 : 0,
+                    opacity: resolvedTheme === "dark" ? 1 : 0,
+                    rotate: resolvedTheme === "dark" ? 0 : -180,
                 }}
                 transition={{ duration: 0.3, ease: "easeInOut" }}
                 className="absolute inset-0 flex items-center justify-center"
@@ -40,9 +39,9 @@ export default function ThemeToggle() {
             <motion.div
                 initial={false}
                 animate={{
-                    scale: theme === "dark" ? 0 : 1,
-                    opacity: theme === "dark" ? 0 : 1,
-                    rotate: theme === "dark" ? 180 : 0,
+                    scale: resolvedTheme === "dark" ? 0 : 1,
+                    opacity: resolvedTheme === "dark" ? 0 : 1,
+                    rotate: resolvedTheme === "dark" ? 180 : 0,
                 }}
                 transition={{ duration: 0.3, ease: "easeInOut" }}
                 className="absolute inset-0 flex items-center justify-center"

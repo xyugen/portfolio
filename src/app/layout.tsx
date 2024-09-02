@@ -49,7 +49,7 @@ export default function RootLayout({
             >
                 <ThemeProvider
                     attribute="class"
-                    defaultTheme="light"
+                    defaultTheme="system"
                     enableSystem
                 >
                     <NextTopLoader color="#000000" showSpinner={false} />
