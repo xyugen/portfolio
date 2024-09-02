@@ -4,6 +4,13 @@ import { Button } from "@/components/ui/button";
 import { ArrowDownToLine } from "lucide-react";
 import Link from "next/link";
 import { about } from "./data";
+import Github from "@/components/icons/Github";
+import {
+    Tooltip,
+    TooltipContent,
+    TooltipProvider,
+    TooltipTrigger,
+} from "@/components/ui/tooltip";
 
 const About = () => {
     return (
@@ -26,20 +33,53 @@ const About = () => {
                     type: "tween",
                     ease: "easeOut",
                 }}
+                className="flex flex-row gap-2"
             >
-                <Button
-                    variant={"ghost"}
-                    className="flex rounded-sm items-center text-sm gap-1 text-muted-foreground"
-                >
-                    <Link
-                        href="/resume"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="flex flex-row md:text-base gap-1 items-center"
-                    >
-                        Resume <ArrowDownToLine className="size-4 md:size-5" />
-                    </Link>
-                </Button>
+                <TooltipProvider>
+                    <Tooltip>
+                        <TooltipTrigger asChild>
+                            <Button
+                                variant={"ghost"}
+                                className="flex rounded-sm items-center text-sm gap-1 text-muted-foreground"
+                            >
+                                <Link
+                                    href="/resume"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="flex flex-row md:text-base gap-2 items-center"
+                                >
+                                    Github{" "}
+                                    <Github className="size-3 md:size-5" />
+                                </Link>
+                            </Button>
+                        </TooltipTrigger>
+                        <TooltipContent>
+                            <p>Check out my Github</p>
+                        </TooltipContent>
+                    </Tooltip>
+
+                    <Tooltip>
+                        <TooltipTrigger asChild>
+                            <Button
+                                variant={"ghost"}
+                                className="flex rounded-sm items-center text-sm gap-1 text-muted-foreground"
+                            >
+                                <Link
+                                    href="/resume"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="flex flex-row md:text-base gap-1 items-center"
+                                >
+                                    Resume{" "}
+                                    <ArrowDownToLine className="size-4 md:size-5" />
+                                </Link>
+                            </Button>
+                        </TooltipTrigger>
+                        <TooltipContent>
+                            <p>Download my resume</p>
+                        </TooltipContent>
+                    </Tooltip>
+                </TooltipProvider>
             </BlurFade>
         </section>
     );
