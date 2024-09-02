@@ -43,7 +43,7 @@ const About = () => {
                                 className="flex rounded-sm items-center text-sm gap-1 text-muted-foreground"
                             >
                                 <Link
-                                    href="/resume"
+                                    href="https://github.com/xyugen"
                                     target="_blank"
                                     rel="noopener noreferrer"
                                     className="flex flex-row md:text-base gap-2 items-center"
