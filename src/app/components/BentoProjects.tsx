@@ -33,14 +33,14 @@ const Bento = () => {
 };
 
 const section: React.ReactNode[] = [
-    <h2 key={0} className="text-primary text-7xl text-center tracking-wide font">
+    <h2 key={0} className="text-primary text-7xl font-bold text-center tracking-tight">
         Creations
     </h2>,
     <Bento key={1} />,
     <WordFadeIn
         key={2}
         words="More to come&hellip;"
-        className="text-foreground/90 text-2xl md:text-4xl tracking-wide text-center"
+        className="text-foreground/50 text-xl md:text-3xl tracking-wide text-center"
         delay={0.75}
     />,
 ];

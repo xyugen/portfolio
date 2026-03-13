@@ -14,8 +14,8 @@ import {
 
 const About = () => {
     return (
-        <section id="about" className="space-y-4">
-            <div className="flex flex-col gap-6 md:gap-10">
+        <section id="about" className="space-y-8">
+            <div className="flex flex-col gap-6 md:gap-8">
                 {about.map((data, index) => (
                     <WordFadeIn
                         key={index}
@@ -33,7 +33,7 @@ const About = () => {
                     type: "tween",
                     ease: "easeOut",
                 }}
-                className="flex flex-row gap-2"
+                className="flex flex-row gap-3"
             >
                 <TooltipProvider>
                     <Tooltip>
@@ -49,7 +49,7 @@ const About = () => {
                                     className="flex flex-row md:text-base gap-2 items-center"
                                 >
                                     Github{" "}
-                                    <Github className="size-3 md:size-5" />
+                                    <Github className="size-3.5 md:size-4" />
                                 </Link>
                             </Button>
                         </TooltipTrigger>
@@ -68,10 +68,10 @@ const About = () => {
                                     href="/resume"
                                     target="_blank"
                                     rel="noopener noreferrer"
-                                    className="flex flex-row md:text-base gap-1 items-center"
+                                    className="flex flex-row md:text-base gap-2 items-center"
                                 >
                                     Resume{" "}
-                                    <ArrowDownToLine className="size-4 md:size-5" />
+                                    <ArrowDownToLine className="size-3.5 md:size-4" />
                                 </Link>
                             </Button>
                         </TooltipTrigger>

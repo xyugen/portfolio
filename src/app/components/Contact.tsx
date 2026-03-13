@@ -1,4 +1,3 @@
-import H2 from "@/components/H2";
 import BlurFade from "@/components/magicui/blur-fade";
 import { ConfettiButton } from "@/components/magicui/confetti";
 import Particles from "@/components/magicui/particles";
@@ -16,24 +15,26 @@ const Contact = () => {
     return (
         <section
             id="contact"
-            className="relative p-8 md:p-2 flex h-[500px] w-full flex-col items-center justify-center overflow-hidden rounded-lg border bg-background md:shadow-xl"
+            className="relative py-24 px-8 flex w-full flex-col items-center justify-center overflow-hidden rounded-xl border bg-background"
         >
             <BlurFade delay={0.5} inView>
-                <H2 className="text-5xl md:text-6xl font-semibold">Contact</H2>
-            </BlurFade>
-            <BlurFade delay={0.5 * 2}>
-                <p className="text-foreground text-center text-base md:text-xl my-4 pointer-events-none">
-                    Interested in working together? Feel free to reach out!
+                <p className="text-muted-foreground text-sm font-medium tracking-widest uppercase mb-6">
+                    Get in touch
                 </p>
             </BlurFade>
-            <BlurFade delay={0.5 * 3} className="z-10">
+            <BlurFade delay={0.5 * 2} inView>
+                <h2 className="text-4xl md:text-6xl font-bold text-foreground text-center tracking-tight mb-4 max-w-xl leading-tight">
+                    Let&apos;s build something together.
+                </h2>
+            </BlurFade>
+            <BlurFade delay={0.5 * 3} className="z-10" inView>
                 <ConfettiButton
                     variant={"link"}
-                    className="bg-transparent text-foreground"
+                    className="bg-transparent p-0 h-auto"
                 >
                     <a
                         href="mailto:renzyx.dev@gmail.com"
-                        className="text-lg md:text-3xl font-semibold"
+                        className="text-xl md:text-3xl font-semibold text-foreground/50 hover:text-foreground transition-colors duration-300"
                     >
                         renzyx.dev@gmail.com
                     </a>
@@ -41,7 +42,7 @@ const Contact = () => {
             </BlurFade>
             <Particles
                 className="absolute inset-0 z-0"
-                quantity={100}
+                quantity={80}
                 ease={80}
                 color={color}
                 refresh

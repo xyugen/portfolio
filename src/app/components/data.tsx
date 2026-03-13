@@ -168,6 +168,6 @@ export const about = [
     },
     {
         text: "Filipino Software Engineer with a design flair and a passion for clean, efficient code. Specializing in responsive, user-friendly web applications with modern technologies.",
-        className: "md:max-w-2xl font-medium text-foreground/80 md:text-2xl",
+        className: "md:max-w-2xl font-normal text-foreground/60 md:text-2xl",
     },
 ];
