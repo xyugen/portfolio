@@ -4,6 +4,7 @@ import { GeistSans } from "geist/font/sans";
 import About from "./About";
 import Projects from "./Projects";
 import Contact from "./Contact";
+import Experience from "./Experience";
 import AnimatedGridPattern from "@/components/magicui/animated-grid-pattern";
 import { cn } from "@/lib/utils";
 import BentoProjects from "./BentoProjects";
@@ -28,6 +29,8 @@ export default function Component() {
             <div className="relative z-10">
                 <div className="max-w-4xl md:max-w-7xl mx-auto space-y-20 px-6 sm:px-8 md:px-20 lg:px-8 py-16">
                     <About />
+
+                    <Experience />
 
                     {/* <Projects /> */}
                     <BentoProjects />

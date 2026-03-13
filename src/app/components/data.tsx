@@ -14,6 +14,21 @@ import RealtimeChat from "@/components/projects/realtime-chat";
 import DiscordChat from "@/components/projects/discord-chat";
 import DocumentRequestApp from "@/components/projects/document-request";
 
+export const experience = [
+    {
+        company: "Denso Ten Solutions Philippines Corporation",
+        role: "Software Engineer Intern",
+        location: "Pasig, Philippines",
+        startDate: "Feb 2026",
+        endDate: null as string | null, // null = present
+        type: "On-site",
+        bullets: [
+            "Planning projects and tasks for co-interns across ongoing development initiatives.",
+            "Leading development on multiple projects as the primary engineer.",
+        ],
+    },
+];
+
 export const projects = [
     {
         title: "BulSU Schedule Plotter",
