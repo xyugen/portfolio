@@ -52,6 +52,18 @@ const config = {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
+        // Electric Depth palette
+        bg: {
+          DEFAULT: "hsl(var(--bg))",
+          elevated: "hsl(var(--bg-elevated))",
+          glass: "var(--bg-glass)",
+        },
+        "accent-electric": {
+          DEFAULT: "hsl(var(--accent-electric))",
+        },
+        "accent-cyan": {
+          DEFAULT: "hsl(var(--accent-cyan))",
+        },
       },
       borderRadius: {
         lg: "var(--radius)",
@@ -76,22 +88,21 @@ const config = {
             "offset-distance": "100%",
           },
         },
-        "shine-pulse": {
-          "0%": {
-            "background-position": "0% 0%",
-          },
-          "50%": {
-            "background-position": "100% 100%",
-          },
-          to: {
-            "background-position": "0% 0%",
-          },
+        "glow-breathe": {
+          "0%, 100%": { opacity: "0.6" },
+          "50%": { opacity: "1" },
+        },
+        "marquee": {
+          "0%": { transform: "translateX(0%)" },
+          "100%": { transform: "translateX(-50%)" },
         },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
-        "border-beam": "border-beam calc(var(--duration)*1s) infinite linear",
+        "border-beam": "border-beam calc(var(--duration)*s) infinite linear",
+        "glow-breathe": "glow-breathe 6s ease-in-out infinite",
+        "marquee": "marquee 30s linear infinite",
       },
     },
   },

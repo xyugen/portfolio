@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Portfolio Refactor — Wireframe Preview (Bioluminescent Terminal)</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: #080c14;
+    color: #e8f0ff;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  .container { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+
+  /* Sticky Nav */
+  .nav {
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(8, 12, 20, 0.8);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid #1a2744;
+    padding: 16px 0;
+  }
+  .nav .container { display: flex; justify-content: space-between; align-items: center; }
+  .nav-brand {
+    font-size: 1.25rem; font-weight: 800;
+    background: linear-gradient(135deg, #2b7fff, #00d4ff);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  }
+  .nav-links { display: flex; gap: 32px; }
+  .nav-links a { color: #6b8ab8; text-decoration: none; font-size: 0.875rem; font-weight: 500; transition: color 0.2s; }
+  .nav-links a:hover { color: #e8f0ff; }
+
+  section { padding: 80px 0; }
+  .section-label {
+    font-size: 0.75rem; font-weight: 500; text-transform: uppercase;
+    letter-spacing: 0.15em; color: #6b8ab8; margin-bottom: 32px;
+  }
+
+  /* Hero */
+  .hero {
+    min-height: 90vh; display: flex; flex-direction: column;
+    justify-content: center; align-items: center; text-align: center;
+    position: relative;
+  }
+  .hero::before {
+    content: ''; position: absolute; inset: 0;
+    background: radial-gradient(ellipse at center, rgba(43,127,255,0.12), transparent 60%);
+    animation: breathe 4s ease-in-out infinite alternate;
+  }
+  @keyframes breathe { from { opacity: 0.4; transform: scale(1); } to { opacity: 0.8; transform: scale(1.05); } }
+
+  .hero-content { position: relative; z-index: 2; }
+  .hero-name {
+    font-size: 5rem; font-weight: 800; letter-spacing: -0.03em; line-height: 1.05; margin-bottom: 20px;
+  }
+  .hero-name .char {
+    display: inline-block; opacity: 0;
+    animation: charReveal 0.6s ease-out forwards;
+  }
+  @keyframes charReveal {
+    from { opacity: 0; filter: blur(8px); transform: translateY(10px); }
+    to { opacity: 1; filter: blur(0); transform: translateY(0); }
+  }
+  .hero-subtitle {
+    font-size: 1.15rem; color: #6b8ab8; font-weight: 400; margin-bottom: 16px;
+    opacity: 0; animation: fadeIn 0.8s ease-out 1.2s forwards;
+  }
+  @keyframes fadeIn { to { opacity: 1; } }
+
+  .hero-cta { display: flex; gap: 16px; justify-content: center; margin-top: 32px; opacity: 0; animation: fadeIn 0.6s ease-out 1.6s forwards; }
+  .btn-primary {
+    background: linear-gradient(135deg, #2b7fff, #00d4ff);
+    color: #fff; border: none; padding: 12px 28px; border-radius: 8px;
+    font-size: 0.875rem; font-weight: 600; cursor: pointer;
+    box-shadow: 0 0 20px rgba(43,127,255,0.3);
+  }
+  .btn-ghost {
+    background: transparent; color: #6b8ab8; border: 1px solid #1a2744;
+    padding: 12px 28px; border-radius: 8px; font-size: 0.875rem; font-weight: 600; cursor: pointer;
+  }
+  .btn-ghost:hover { border-color: #2b7fff; color: #e8f0ff; }
+
+  /* 3D placeholder */
+  .torus-placeholder {
+    position: absolute; right: 5%; top: 50%; transform: translateY(-50%);
+    width: 280px; height: 280px; border: 2px solid rgba(43,127,255,0.2);
+    border-radius: 50%; z-index: 1;
+    animation: float 6s ease-in-out infinite;
+    box-shadow: 0 0 60px rgba(43,127,255,0.08), inset 0 0 60px rgba(0,212,255,0.05);
+  }
+  .torus-placeholder::after {
+    content: ''; position: absolute; inset: 30px;
+    border: 1.5px solid rgba(0,212,255,0.15); border-radius: 50%;
+  }
+  @keyframes float { 0%,100% { transform: translateY(-50%) rotate(0deg); } 50% { transform: translateY(-55%) rotate(5deg); } }
+
+  /* Marquee */
+  .marquee-container {
+    width: 100%; overflow: hidden; margin-top: 48px;
+    mask-image: linear-gradient(to right, transparent, #000 10%, #000 90%, transparent);
+    opacity: 0.3;
+  }
+  .marquee-track { display: flex; gap: 16px; width: max-content; animation: marquee 30s linear infinite; }
+  @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+  .marquee-tag {
+    background: #0f1623; color: #6b8ab8; font-size: 0.75rem; font-weight: 500;
+    padding: 6px 16px; border-radius: 9999px; white-space: nowrap; font-family: monospace;
+    border: 1px solid #1a2744;
+  }
+
+  /* Scroll indicator */
+  .scroll-indicator { position: absolute; bottom: 32px; left: 50%; transform: translateX(-50%); opacity: 0.3; animation: bounce 2s infinite; color: #2b7fff; }
+  @keyframes bounce { 0%,100% { transform: translateX(-50%) translateY(0); } 50% { transform: translateX(-50%) translateY(8px); } }
+
+  /* About */
+  .about-bio { font-size: 1rem; color: rgba(232,240,255,0.7); line-height: 1.8; max-width: 640px; margin-bottom: 40px; }
+  .about-bio p { margin-bottom: 16px; }
+  .currently { display: flex; align-items: center; gap: 8px; color: #6b8ab8; font-size: 0.875rem; }
+  .currently .dot { width: 8px; height: 8px; border-radius: 50%; background: #2b7fff; animation: pulse 2s infinite; }
+  @keyframes pulse { 0%,100% { box-shadow: 0 0 0 0 rgba(43,127,255,0.4); } 50% { box-shadow: 0 0 0 8px rgba(43,127,255,0); } }
+
+  .stats-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-bottom: 32px; }
+  @media (max-width: 640px) { .stats-row { grid-template-columns: repeat(2, 1fr); } }
+  .stat-card {
+    background: #0f1623; border: 1px solid #1a2744; border-radius: 12px; padding: 20px; text-align: center;
+  }
+  .stat-number { font-size: 1.5rem; font-weight: 700; color: #e8f0ff; margin-bottom: 4px; }
+  .stat-label { font-size: 0.75rem; color: #6b8ab8; }
+
+  .social-row { display: flex; gap: 12px; }
+  .social-btn {
+    background: transparent; border: 1px solid #1a2744; color: #6b8ab8;
+    padding: 8px 16px; border-radius: 6px; font-size: 0.875rem; font-weight: 500;
+    cursor: pointer; transition: all 0.2s; text-decoration: none;
+  }
+  .social-btn:hover { border-color: #2b7fff; color: #e8f0ff; box-shadow: 0 0 12px rgba(43,127,255,0.15); }
+
+  /* Experience */
+  .timeline { position: relative; padding-left: 32px; }
+  .timeline::before { content: ''; position: absolute; left: 7px; top: 8px; bottom: 0; width: 1px; background: #1a2744; }
+  .timeline-entry { position: relative; margin-bottom: 40px; }
+  .timeline-dot { position: absolute; left: -28px; top: 6px; width: 12px; height: 12px; border-radius: 50%; background: #2b7fff; box-shadow: 0 0 12px rgba(43,127,255,0.5); }
+  .timeline-dot::before {
+    content: ''; position: absolute; inset: -4px; border-radius: 50%;
+    background: #2b7fff; opacity: 0.3; animation: ping 2s infinite;
+  }
+  @keyframes ping { 0% { transform: scale(1); opacity: 0.3; } 75%,100% { transform: scale(2); opacity: 0; } }
+  .timeline-date { font-size: 0.875rem; color: #6b8ab8; margin-bottom: 8px; }
+  .timeline-company { font-size: 1.25rem; font-weight: 700; margin-bottom: 4px; }
+  .timeline-role { font-size: 0.875rem; color: #6b8ab8; margin-bottom: 12px; }
+  .timeline-bullets { list-style: none; }
+  .timeline-bullets li { font-size: 0.875rem; color: rgba(107,138,184,0.8); padding-left: 16px; position: relative; margin-bottom: 8px; }
+  .timeline-bullets li::before { content: ''; position: absolute; left: 0; top: 0.6em; width: 12px; height: 1px; background: #2b7fff; opacity: 0.5; }
+
+  /* Bento */
+  .bento-heading { font-size: 2.5rem; font-weight: 700; text-align: center; margin-bottom: 40px; letter-spacing: -0.02em; }
+  .bento-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-bottom: 32px; }
+  @media (max-width: 768px) { .bento-grid { grid-template-columns: 1fr 1fr; } }
+  @media (max-width: 480px) { .bento-grid { grid-template-columns: 1fr; } }
+  .bento-card {
+    background: #0f1623; border: 1px solid #1a2744; border-radius: 12px;
+    padding: 24px; min-height: 200px; display: flex; flex-direction: column;
+    transition: all 0.3s; position: relative; overflow: hidden;
+  }
+  .bento-card:hover { border-color: #2b7fff; box-shadow: 0 0 20px rgba(43,127,255,0.1); }
+  .span-1 { grid-column: span 1; }
+  .span-2 { grid-column: span 2; }
+  @media (max-width: 768px) { .span-2 { grid-column: span 2; } }
+  .bento-icon { color: #2b7fff; margin-bottom: 12px; font-size: 1.25rem; }
+  .bento-name { font-size: 1rem; font-weight: 600; margin-bottom: 8px; }
+  .bento-desc { font-size: 0.8rem; color: #6b8ab8; flex: 1; margin-bottom: 12px; }
+  .bento-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+  .bento-tag {
+    font-size: 0.65rem; padding: 3px 8px; background: #080c14; border: 1px solid #1a2744;
+    border-radius: 9999px; color: #6b8ab8; font-family: monospace;
+  }
+  .bento-cta { font-size: 0.75rem; color: #2b7fff; margin-top: 8px; text-decoration: none; }
+  .bento-cta:hover { text-decoration: underline; }
+
+  /* Tech Stack */
+  .tech-section { margin-top: 40px; }
+  .tech-category { margin-bottom: 24px; }
+  .tech-category-label { font-size: 0.75rem; color: #1a2744; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 12px; color: #6b8ab8; }
+  .tech-tags { display: flex; flex-wrap: wrap; gap: 8px; }
+  .tech-pill {
+    font-size: 0.75rem; padding: 6px 14px; background: #0f1623; border: 1px solid #1a2744;
+    border-radius: 9999px; color: #6b8ab8; font-family: monospace; transition: all 0.2s;
+  }
+  .tech-pill:hover { border-color: #2b7fff; box-shadow: 0 0 8px rgba(43,127,255,0.15); }
+  .tech-pill.learning {
+    border-color: rgba(43,127,255,0.3);
+    background: linear-gradient(#0f1623, #0f1623) padding-box,
+                linear-gradient(135deg, #2b7fff, #00d4ff) border-box;
+    border: 1px solid transparent;
+  }
+
+  /* Testimonials */
+  .testimonial-card {
+    background: #0f1623; border: 1px solid #1a2744; border-radius: 12px;
+    padding: 32px; margin-bottom: 20px; position: relative;
+  }
+  .testimonial-card::before {
+    content: '\201C'; position: absolute; top: 16px; left: 24px;
+    font-size: 3rem; color: #2b7fff; opacity: 0.4; font-family: Georgia, serif;
+  }
+  .testimonial-text { font-size: 1rem; color: rgba(232,240,255,0.8); line-height: 1.7; margin-bottom: 16px; padding-left: 8px; }
+  .testimonial-author { font-size: 0.875rem; color: #6b8ab8; }
+  .testimonial-author strong { color: #e8f0ff; font-weight: 600; }
+
+  /* Contact */
+  .contact-section {
+    background: #0f1623; border: 1px solid #1a2744; border-radius: 16px;
+    padding: 80px 32px; text-align: center; position: relative; overflow: hidden; margin-bottom: 80px;
+  }
+  .contact-section::before {
+    content: ''; position: absolute; inset: 0;
+    background: radial-gradient(circle at 50% 50%, rgba(43,127,255,0.06), transparent 70%);
+  }
+  .contact-heading { font-size: 3rem; font-weight: 700; margin-bottom: 24px; letter-spacing: -0.03em; line-height: 1.2; }
+  .contact-email {
+    font-size: 1.5rem; font-weight: 600; color: rgba(232,240,255,0.5);
+    text-decoration: none; transition: color 0.3s; cursor: pointer;
+  }
+  .contact-email:hover { color: #2b7fff; }
+
+  /* Footer */
+  .footer { border-top: 1px solid #1a2744; padding: 32px 0; }
+  .footer .container { display: flex; justify-content: space-between; align-items: end; }
+  .footer-brand {
+    font-size: 3.5rem; font-weight: 800; line-height: 1;
+    background: linear-gradient(135deg, #2b7fff, #00d4ff);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  }
+  .footer-right { display: flex; flex-direction: column; align-items: flex-end; gap: 8px; }
+  .footer-copy { font-size: 0.75rem; color: #1a2744; }
+  .back-to-top {
+    background: #0f1623; border: 1px solid #1a2744; color: #6b8ab8;
+    width: 36px; height: 36px; border-radius: 8px; cursor: pointer;
+    font-size: 1rem; transition: all 0.2s;
+  }
+  .back-to-top:hover { border-color: #2b7fff; color: #e8f0ff; }
+
+  @media (max-width: 768px) {
+    .hero-name { font-size: 2.5rem; }
+    .torus-placeholder { display: none; }
+    .about-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <div class="container">
+    <span class="nav-brand">renzyx.</span>
+    <div class="nav-links">
+      <a href="#about">About</a>
+      <a href="#work">Work</a>
+      <a href="#skills">Skills</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="torus-placeholder"></div>
+  <div class="hero-content">
+    <h1 class="hero-name" id="hero-name"></h1>
+    <p class="hero-subtitle">Filipino creative technologist. I engineer software that thinks, moves, and lasts.</p>
+    <div class="hero-cta">
+      <button class="btn-primary">View My Work ↓</button>
+      <button class="btn-ghost">Download Resume</button>
+    </div>
+  </div>
+  <div class="marquee-container">
+    <div class="marquee-track">
+      <span class="marquee-tag">Next.js</span><span class="marquee-tag">TypeScript</span>
+      <span class="marquee-tag">React</span><span class="marquee-tag">Golang</span>
+      <span class="marquee-tag">Tailwind CSS</span><span class="marquee-tag">Framer Motion</span>
+      <span class="marquee-tag">Svelte</span><span class="marquee-tag">Android</span>
+      <span class="marquee-tag">Zustand</span><span class="marquee-tag">shadcn/ui</span>
+      <span class="marquee-tag">GSAP</span><span class="marquee-tag">Supabase</span>
+      <span class="marquee-tag">Next.js</span><span class="marquee-tag">TypeScript</span>
+      <span class="marquee-tag">React</span><span class="marquee-tag">Golang</span>
+      <span class="marquee-tag">Tailwind CSS</span><span class="marquee-tag">Framer Motion</span>
+      <span class="marquee-tag">Svelte</span><span class="marquee-tag">Android</span>
+      <span class="marquee-tag">Zustand</span><span class="marquee-tag">shadcn/ui</span>
+      <span class="marquee-tag">GSAP</span><span class="marquee-tag">Supabase</span>
+    </div>
+  </div>
+  <div class="scroll-indicator">↓</div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="container">
+    <p class="section-label">About</p>
+    <div class="about-bio">
+      <p>I'm Renz — a Filipino software engineer building at the intersection of code and design. I care about clean architecture, smooth interactions, and software that respects the user.</p>
+      <div class="currently"><span class="dot"></span> IT graduate (magna cum laude, BulSU), exploring the AI/LLM space, looking for my next engineering role.</div>
+    </div>
+    <div class="stats-row">
+      <div class="stat-card"><div class="stat-number">1+</div><div class="stat-label">Years Experience</div></div>
+      <div class="stat-card"><div class="stat-number">7+</div><div class="stat-label">Projects Shipped</div></div>
+      <div class="stat-card"><div class="stat-number">PH</div><div class="stat-label">Remote APAC</div></div>
+      <div class="stat-card"><div class="stat-number">✓</div><div class="stat-label">Open to Work</div></div>
+    </div>
+    <div class="social-row">
+      <a class="social-btn" href="#">GitHub ↗</a>
+      <a class="social-btn" href="#">Resume ↓</a>
+      <a class="social-btn" href="#">LinkedIn ↗</a>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="work">
+  <div class="container">
+    <p class="section-label">Experience</p>
+    <div class="timeline">
+      <div class="timeline-entry">
+        <div class="timeline-dot"></div>
+        <div class="timeline-date">Feb 2026 — Present</div>
+        <div class="timeline-company">Denso Ten Solutions Philippines Corporation</div>
+        <div class="timeline-role">Software Engineer Intern · On-site · Pasig</div>
+        <ul class="timeline-bullets">
+          <li>Planning and leading development for co-interns across multiple projects.</li>
+          <li>Primary engineer on internal tooling and automation.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section>
+  <div class="container">
+    <p class="section-label">Featured Projects</p>
+    <div class="bento-grid">
+      <div class="bento-card span-2">
+        <div class="bento-icon">📅</div>
+        <div class="bento-name">BulSU Schedule Plotter</div>
+        <div class="bento-desc">Web app for BulSU — helps instructors schedule and visualize their classes.</div>
+        <div class="bento-tags"><span class="bento-tag">NextJS</span><span class="bento-tag">Lucia</span><span class="bento-tag">TanStack</span><span class="bento-tag">Zustand</span></div>
+      </div>
+      <div class="bento-card span-1">
+        <div class="bento-icon">🤖</div>
+        <div class="bento-name">Revel Bot</div>
+        <div class="bento-desc">Custom Discord bot with AI integrations and utility tools.</div>
+        <div class="bento-tags"><span class="bento-tag">Discord.js</span><span class="bento-tag">JavaScript</span></div>
+        <a class="bento-cta" href="#">Visit Project →</a>
+      </div>
+      <div class="bento-card span-1">
+        <div class="bento-icon">💬</div>
+        <div class="bento-name">Realtime Chat</div>
+        <div class="bento-desc">WebSocket-based realtime communication app.</div>
+        <div class="bento-tags"><span class="bento-tag">Solid</span><span class="bento-tag">Golang</span></div>
+        <a class="bento-cta" href="#">Visit Project →</a>
+      </div>
+      <div class="bento-card span-1">
+        <div class="bento-icon">📝</div>
+        <div class="bento-name">Anonymyst</div>
+        <div class="bento-desc">Anonymous sharing platform inspired by a freedom wall.</div>
+        <div class="bento-tags"><span class="bento-tag">React</span></div>
+        <a class="bento-cta" href="#">Visit Project →</a>
+      </div>
+      <div class="bento-card span-1">
+        <div class="bento-icon">⚡</div>
+        <div class="bento-name">Gitignite</div>
+        <div class="bento-desc">CLI for generating .gitignore files from templates.</div>
+        <div class="bento-tags"><span class="bento-tag">Golang</span></div>
+        <a class="bento-cta" href="#">Visit Project →</a>
+      </div>
+      <div class="bento-card span-1">
+        <div class="bento-icon">🖼️</div>
+        <div class="bento-name">Pixiframe</div>
+        <div class="bento-desc">Image uploading, sharing, and securing platform.</div>
+        <div class="bento-tags"><span class="bento-tag">SvelteKit</span><span class="bento-tag">Supabase</span></div>
+        <a class="bento-cta" href="#">Visit Project →</a>
+      </div>
+      <div class="bento-card span-1">
+        <div class="bento-icon">📱</div>
+        <div class="bento-name">Trade Document Request</div>
+        <div class="bento-desc">Android app for streamlined document requests.</div>
+        <div class="bento-tags"><span class="bento-tag">Android</span><span class="bento-tag">Java</span></div>
+        <a class="bento-cta" href="#">Visit Project →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TECH STACK -->
+<section id="skills">
+  <div class="container tech-section">
+    <p class="section-label">Toolkit</p>
+    <div class="tech-category">
+      <p class="tech-category-label">Languages</p>
+      <div class="tech-tags">
+        <span class="tech-pill">TypeScript</span><span class="tech-pill">JavaScript</span>
+        <span class="tech-pill">Golang</span><span class="tech-pill">Java</span>
+        <span class="tech-pill">Python</span><span class="tech-pill">HTML/CSS</span>
+      </div>
+    </div>
+    <div class="tech-category">
+      <p class="tech-category-label">Frameworks</p>
+      <div class="tech-tags">
+        <span class="tech-pill">Next.js</span><span class="tech-pill">React</span>
+        <span class="tech-pill">SvelteKit</span><span class="tech-pill">Tailwind CSS</span>
+        <span class="tech-pill">Framer Motion</span><span class="tech-pill">Zustand</span>
+        <span class="tech-pill">shadcn/ui</span><span class="tech-pill">Solid</span>
+      </div>
+    </div>
+    <div class="tech-category">
+      <p class="tech-category-label">Tools & Platforms</p>
+      <div class="tech-tags">
+        <span class="tech-pill">Git</span><span class="tech-pill">Vercel</span>
+        <span class="tech-pill">Docker</span><span class="tech-pill">Supabase</span>
+        <span class="tech-pill">Android Studio</span><span class="tech-pill">Figma</span>
+      </div>
+    </div>
+    <div class="tech-category">
+      <p class="tech-category-label">Currently Learning</p>
+      <div class="tech-tags">
+        <span class="tech-pill learning">AI / LLM Agents</span>
+        <span class="tech-pill learning">Jetpack Compose</span>
+        <span class="tech-pill learning">Flutter</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section>
+  <div class="container">
+    <p class="section-label">Kind Words</p>
+    <div class="testimonial-card">
+      <p class="testimonial-text">Renz consistently delivered beyond expectations. His ability to bridge engineering and design thinking made him invaluable to the team.</p>
+      <p class="testimonial-author"><strong>Karen [Last Name]</strong> — Supervisor, Denso Ten Solutions PH</p>
+    </div>
+    <div class="testimonial-card">
+      <p class="testimonial-text">[Placeholder — add testimonial from Jonas-sensei or colleagues when available]</p>
+      <p class="testimonial-author"><strong>[Name]</strong> — [Role], [Company]</p>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="container">
+    <div class="contact-section">
+      <p class="section-label">Get in touch</p>
+      <h2 class="contact-heading">Let's build something<br>together.</h2>
+      <a class="contact-email" href="mailto:renzyx.dev@gmail.com">renzyx.dev@gmail.com</a>
+      <div style="margin-top: 24px; display: flex; gap: 12px; justify-content: center;">
+        <a class="social-btn" href="#">GitHub ↗</a>
+        <a class="social-btn" href="#">LinkedIn ↗</a>
+        <a class="social-btn" href="#">Download Resume ↓</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="container">
+    <span class="footer-brand">renzyx.</span>
+    <div class="footer-right">
+      <div class="social-row">
+        <a class="social-btn" href="#">GitHub</a>
+        <a class="social-btn" href="#">LinkedIn</a>
+      </div>
+      <span class="footer-copy">© 2026 Renz Arias</span>
+      <button class="back-to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+    </div>
+  </div>
+</footer>
+
+<script>
+const name = "I build things that move.";
+const container = document.getElementById('hero-name');
+name.split('').forEach((char, i) => {
+  const span = document.createElement('span');
+  span.className = 'char';
+  span.textContent = char === ' ' ? '\u00A0' : char;
+  span.style.animationDelay = `${i * 0.04}s`;
+  container.appendChild(span);
+});
+</script>
+</body>
+</html>
